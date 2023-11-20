@@ -95,16 +95,16 @@ const movies = {
 };
 
 const App = () => {
-	let usersByMovie = {};
+	let usersLikedMovie = {};
 
 	// Map the users by the movie they liked
 	profiles.forEach((profile) => {
 		const movieID = profile.favoriteMovieID;
 
-		if (usersByMovie[movieID]) {
-			usersByMovie[movieID].push(profile.userID);
+		if (usersLikedMovie[movieID]) {
+			usersLikedMovie[movieID].push(profile.userID);
 		} else {
-			usersByMovie[movieID] = [profile.userID];
+			usersLikedMovie[movieID] = [profile.userID];
 		}
 	});
 	return (
@@ -115,7 +115,11 @@ const App = () => {
 			</header>
 			<h2>How Popular is Your Favorite Movie?</h2>
 			<div className="favourite-movies">
-				<Dashboard usersByMovie={usersByMovie} movies={movies} users={users} />
+				<Dashboard
+					usersLikedMovie={usersLikedMovie}
+					movies={movies}
+					users={users}
+				/>
 			</div>
 		</div>
 	);
