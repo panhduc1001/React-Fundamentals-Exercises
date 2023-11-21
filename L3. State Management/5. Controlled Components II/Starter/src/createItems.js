@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const CreateNewItem = ({ onAddItem }) => {
+const CreateItems = ({ onAddItem }) => {
 	const [value, setValue] = useState("");
 
 	const handleChange = (event) => {
@@ -14,7 +14,7 @@ const CreateNewItem = ({ onAddItem }) => {
 		setValue("");
 	};
 
-	const inputIsEmpty = () => value === "";
+	const noItemsFound = () => value === "";
 
 	return (
 		<div>
@@ -25,14 +25,14 @@ const CreateNewItem = ({ onAddItem }) => {
 					value={value}
 					onChange={handleChange}
 				/>
-				<button disabled={inputIsEmpty()}>Add</button>
+				<button disabled={noItemsFound()}>Add</button>
 			</form>
 		</div>
 	);
 };
 
-CreateNewItem.propTypes = {
+CreateItems.propTypes = {
 	onAddItem: PropTypes.func.isRequired,
 };
 
-export default CreateNewItem;
+export default CreateItems;

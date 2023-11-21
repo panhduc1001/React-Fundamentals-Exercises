@@ -1,58 +1,60 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import CreateItem from "./createItems";
+import DeleteItem from "./deleteItems";
+import ItemList from "./listItems";
 
 const App = () => {
-  const [value, setValue] = useState("");
-  const [items, setItems] = useState([]);
+	const [items, setItems] = useState([]);
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
+	const addItem = (item) => {
+		setItems([...items, item]);
+	};
 
-  const addItem = (event) => {
-    event.preventDefault();
-    setItems([...items, value]);
-    setValue("");
-  };
+	const deleteItem = (event) => {
+		setItems(items.slice(0, -1));
+	};
 
-  const deleteLastItem = (event) => {
-    setItems(items.slice(0, -1));
-  };
+	const noItemsFound = () => items.length === 0;
 
-  const inputIsEmpty = () => value === "";
+	return (
+		<div className="App">
+			<header className="App-header">
+				<img src={logo} className="App-logo" alt="logo" />
+				<h1 className="App-title">ReactND - Coding Practice</h1>
+			</header>
 
-  const noItemsFound = () => items.length === 0;
+			<h2>Shopping List</h2>
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">ReactND - Coding Practice</h1>
-      </header>
-      <h2>Shopping List</h2>
-      <form onSubmit={addItem}>
-        <input
-          type="text"
-          placeholder="Enter New Item"
-          value={value}
-          onChange={handleChange}
-        />
-        <button disabled={inputIsEmpty()}>Add</button>
-      </form>
+			{/* <form onSubmit={addItem}>
+				<input
+					type="text"
+					placeholder="Enter New Item"
+					value={value}
+					onChange={handleChange}
+				/>
+				<button disabled={inputIsEmpty()}>Add</button>
+			</form> */}
 
-      <button onClick={deleteLastItem} disabled={noItemsFound()}>
-        Delete Last Item
-      </button>
+			<CreateItem onAddItem={addItem} />
 
-      <p className="items">Items</p>
-      <ol className="item-list">
-        {items.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ol>
-    </div>
-  );
+			{/* <button onClick={deleteLastItem} disabled={noItemsFound()}>
+				Delete Last Item
+			</button> */}
+
+			<DeleteItem onDeleteItem={deleteItem} buttonDisabled={noItemsFound()} />
+
+			{/* <p className="items">Items</p>
+			<ol className="item-list">
+				{items.map((item, index) => (
+					<li key={index}>{item}</li>
+				))}
+			</ol> */}
+
+			<ItemList items={items} />
+		</div>
+	);
 };
 
 export default App;
