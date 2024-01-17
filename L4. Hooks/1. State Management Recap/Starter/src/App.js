@@ -5,12 +5,6 @@ import { useState } from "react";
 
 const users = [{ username: "Amy" }, { username: "John" }];
 
-const messages = [
-	{ username: "Amy", text: "Hi, Jon!" },
-	{ username: "Amy", text: "How are you?" },
-	{ username: "John", text: "Hi, Amy! Good, you?" },
-];
-
 const App = () => {
 	const [messages, setMessages] = useState([]);
 
