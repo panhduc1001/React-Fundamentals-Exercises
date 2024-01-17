@@ -1,7 +1,5 @@
 import logo from "./logo.svg";
 import "./App.css";
-import AddMessage from "./AddMessage";
-import ChatHistory from "./ChatHistory";
 import ChatWindow from "./ChatWindow";
 import { useState } from "react";
 
