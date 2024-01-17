@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const MessageHistory = ({ user, messages }) => {
+const ChatHistory = ({ messages, user }) => {
 	return (
 		<ul className="message-list">
 			{messages.map((message, index) => (
@@ -19,9 +19,9 @@ const MessageHistory = ({ user, messages }) => {
 	);
 };
 
-MessageHistory.propTypes = {
+ChatHistory.propTypes = {
 	messages: PropTypes.array.isRequired,
 	user: PropTypes.object.isRequired,
 };
 
-export default MessageHistory;
+export default ChatHistory;

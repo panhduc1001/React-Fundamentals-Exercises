@@ -1,19 +1,16 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const AddMessage = ({ onMessage }) => {
 	const [message, setMessage] = useState("");
 
 	const handleInputChange = (event) => {
 		const { value } = event.target;
-
 		setMessage(value);
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-
-		// Call the callback function that was passed to this component from ChatWindow
 		onMessage(message);
 		setMessage("");
 	};
@@ -24,12 +21,12 @@ const AddMessage = ({ onMessage }) => {
 
 	return (
 		<div>
-			<form onSubmit={handleSubmit} className="input-group">
+			<form className="input-group" onSubmit={handleSubmit}>
 				<input
 					type="text"
 					className="form-control"
-					value={message}
 					placeholder="Enter your message..."
+					value={message}
 					onChange={handleInputChange}
 				/>
 				<div className="input-group-append">
@@ -43,7 +40,8 @@ const AddMessage = ({ onMessage }) => {
 };
 
 AddMessage.propTypes = {
-	onMessage: PropTypes.func.isRequired,
+	message: PropTypes.string.isRequired,
+	user: PropTypes.object.isRequired,
 };
 
 export default AddMessage;
